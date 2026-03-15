@@ -26,7 +26,7 @@ function loadSvgTemplate() {
 }
 
 function selectPlayer(event) {
-    if (currentPlayer != "") {
+    if (currentPlayer !== "") {
         document.getElementById(currentPlayer).classList.remove("selected"); // remove the "selected" class from the previously selected button
     }
     currentPlayer = event.currentTarget.id; // event.currentTarget is the button that was clicked
@@ -38,8 +38,8 @@ function selectPlayer(event) {
 }
 
 function selectField(event) {
-    amountOfSelections++;
     setSymbol(event);
+    amountOfSelections++;
     updateBoard(event);
     if (check()) {
         return;
@@ -48,13 +48,14 @@ function selectField(event) {
 }
 
 function setSymbol(event) {
-    if (currentPlayer != "") {
+    if (currentPlayer !== "") {
         const field = event.currentTarget;
         if (field.innerHTML === "" && currentPlayer === "circle-player") {
             field.innerHTML = getCircleTemplate();
         } else if (field.innerHTML === "" && currentPlayer === "cross-player") {
             field.innerHTML = getCrossTemplate();
         }
+        field.disabled = true;
     }
 }
 
@@ -136,6 +137,6 @@ function firstLetterUpperCase(string) {
 }
 
 function upperCasePlayer(string) {
-    stringArray = string.split("-");
+    let stringArray = string.split("-");
     return firstLetterUpperCase(stringArray[0]) + "-" + firstLetterUpperCase(stringArray[1]);
 }
