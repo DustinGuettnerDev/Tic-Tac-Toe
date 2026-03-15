@@ -1,0 +1,136 @@
+body {
+    background-color: rgba(0, 0, 0, 0.734);
+    margin: 0;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+}
+
+.cell {
+    border: 2px solid white;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    padding: 0;
+}
+
+/*n begins with 0 and increases 1 till one child does not exist*/
+.cell:nth-child(-n + 3) {
+    /* First row: 1, 2, 3 */
+    /* First row: remove the top border. */
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    /* First column: 1, 4, 7 */
+    /* First column: remove the left border. */
+    border-left: none;
+}
+
+.cell:nth-child(3n) {
+    /* Third column: 3, 6, 9 */
+    /* Third column: remove the right border. */
+    border-right: none;
+}
+
+.cell:nth-child(n + 7) {
+    /* Last row: 7, 8, 9 */
+    /* Last row: remove the bottom border. */
+    border-bottom: none;
+}
+
+.player-btn {
+    padding: 0;
+    margin: 20px 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.player-btn:hover {
+    transform: scale(1.05);
+}
+
+.selected {
+    border: 2px solid white;
+    border-radius: 25%;
+}
+
+.reset-btn {
+    margin-top: 50px;
+    height: 50px;
+    width: 100px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+.reset-btn:hover {
+    border-style: groove;
+    border-color: white;
+}
+
+.tic-tac-toe-dialog {
+    border: 2px solid white;
+    border-radius: 12px;
+    background-color: #686868;
+    color: white;
+    padding: 0;
+    width: 200px;
+    height: 150px;
+}
+
+.ok-btn {
+    margin-top: 50px;
+    height: 25px;
+    width: 50px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+.ok-btn:hover {
+    border-style: groove;
+    border-color: white;
+}
+
+#match-info {
+    font-size: 20px;
+}
+
+.background-dialog {
+    position: fixed;
+    inset: 0;
+    background-color: transparent;
+    z-index: -1;
+    cursor: pointer;
+}
+
+/*utilities*/
+
+.flex-column-acenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

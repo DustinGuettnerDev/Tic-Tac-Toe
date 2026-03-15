@@ -5,17 +5,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tic-Tac-Toe</title>
         <link rel="stylesheet" href="style.css" />
-        
     </head>
-    <body>
+    <body onload="init()">
+        <main>
+            <section class="game-wrapper">
+                <h1>Tic-Tac-Toe</h1>
+                <div id="player">
+                    <button class="player-btn" id="circle-player" onclick="selectPlayer(event)"></button>
+                    <button class="player-btn" id="cross-player" onclick="selectPlayer(event)"></button>
+                </div>
 
+                <div class="board" aria-label="Tic-Tac-Toe Spielfeld">
+                    <button id="cell0" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell1" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell2" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell3" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell4" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell5" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell6" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell7" onclick="selectField(event)" class="cell" disabled></button>
+                    <button id="cell8" onclick="selectField(event)" class="cell" disabled></button>
+                </div>
 
+                <div><button class="reset-btn" onclick="resetGame()">Reset Game</button></div>
+            </section>
 
+            <!--implementation of the dialog for match results-->
+            <dialog id="tic-tac-toe-dialog" class="tic-tac-toe-dialog">
+                <div class="background-dialog" onclick="closeDialog()"></div>
+                <div class="flex-column-acenter">
+                    <p id="match-info"></p>
+                    <button onclick="closeDialog()" class="ok-btn">OK</button>
+                </div>
+            </dialog>
 
+            <script src="script.js"></script>
+            <script src="./scripts/templates.js"></script>
+        </main>
 
-
-
-
-        <script src="script.js"></script> <!-- javascript import, here because of global variables that need to be available before the DOM is fully loaded -->
+        <!-- javascript import, here because of global variables that need to be available before the DOM is fully loaded -->
     </body>
 </html>
