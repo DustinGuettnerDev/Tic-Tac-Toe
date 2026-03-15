@@ -128,7 +128,6 @@ h1 {
 }
 
 /*utilities*/
-
 .flex-column-acenter {
     display: flex;
     flex-direction: column;

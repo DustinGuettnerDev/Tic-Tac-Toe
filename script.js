@@ -25,7 +25,6 @@ function loadSvgTemplate() {
     document.getElementById("cross-player").innerHTML = getCrossTemplate();
 }
 
-//event.target is the actual element that was clicked (often a child), while event.currentTarget is the element where the event handler is attached (in your case, the button).
 function selectPlayer(event) {
     if (currentPlayer != "") {
         document.getElementById(currentPlayer).classList.remove("selected"); // remove the "selected" class from the previously selected button
@@ -50,7 +49,7 @@ function selectField(event) {
 
 function setSymbol(event) {
     if (currentPlayer != "") {
-        const field = event.currentTarget; // event.currentTarget is the button that was clicked, its like document.getElementById("field1") but more dynamic because we dont have to specify the id of the field
+        const field = event.currentTarget;
         if (field.innerHTML === "" && currentPlayer === "circle-player") {
             field.innerHTML = getCircleTemplate();
         } else if (field.innerHTML === "" && currentPlayer === "cross-player") {
