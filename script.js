@@ -1,5 +1,6 @@
 let currentPlayer = "";
 let amountOfSelections = 0;
+let boardRef = document.getElementById("board");
 let circlePlayerRef = document.getElementById("circle-player");
 let crossPlayerRef = document.getElementById("cross-player");
 let fields = document.getElementsByClassName("cell");
@@ -14,6 +15,21 @@ let winConditions = [
     [2, 5, 8], // Column 3
     [0, 4, 8], // Diagonal 1
     [2, 4, 6], // Diagonal 2
+];
+
+let cells = [
+    //first row
+    [50, 50],
+    [150, 50],
+    [250, 50],
+    //second row
+    [50, 150],
+    [150, 150],
+    [250, 150],
+    //third row
+    [50, 250],
+    [150, 250],
+    [250, 250],
 ];
 
 function init() {
@@ -37,11 +53,11 @@ function selectPlayer(event) {
     }
 }
 
-function selectField(event) {
+async function selectField(event) {
     setSymbol(event);
     amountOfSelections++;
     updateBoard(event);
-    if (check()) {
+    if (await check()) {
         return;
     }
     switchPlayer();
@@ -97,6 +113,7 @@ function resetGame() {
     crossPlayerRef.classList.remove("selected");
     circlePlayerRef.disabled = false;
     crossPlayerRef.disabled = false;
+    boardRef.querySelector(".dash").remove();
 }
 
 function updateBoard(event) {
@@ -106,10 +123,11 @@ function updateBoard(event) {
     console.log(board);
 }
 
-function check() {
+async function check() {
     for (let condition of winConditions) {
         const [a, b, c] = condition;
         if (board[a] === currentPlayer && board[b] === currentPlayer && board[c] === currentPlayer) {
+            await generateDash(a, c);
             openDialog(`${upperCasePlayer(currentPlayer)} wins !!`);
             resetGame();
             return true; // exit the function after a win is detected
@@ -139,4 +157,20 @@ function firstLetterUpperCase(string) {
 function upperCasePlayer(string) {
     let stringArray = string.split("-");
     return firstLetterUpperCase(stringArray[0]) + "-" + firstLetterUpperCase(stringArray[1]);
+}
+
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function generateDash(a, c) {
+    const tableHeight = 300;
+    const tableWidth = 300;
+
+    let xy1 = cells[a];
+    let xy2 = cells[c];
+
+    boardRef.innerHTML += getTemplateDash(xy1, xy2, tableHeight, tableWidth);
+    await delay(5000); // wait for 500 milliseconds before proceeding
+    boardRef.querySelector(".dash").remove();
 }

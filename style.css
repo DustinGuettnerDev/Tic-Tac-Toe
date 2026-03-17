@@ -17,6 +17,7 @@ h1 {
 }
 
 .board {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
@@ -132,4 +133,10 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.dash {
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
 }
