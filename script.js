@@ -54,6 +54,8 @@ function selectPlayer(event) {
 }
 
 async function selectField(event) {
+    circlePlayerRef.style.pointerEvents = "none";
+    crossPlayerRef.style.pointerEvents = "none";
     setSymbol(event);
     amountOfSelections++;
     updateBoard(event);
@@ -113,7 +115,8 @@ function resetGame() {
     crossPlayerRef.classList.remove("selected");
     circlePlayerRef.disabled = false;
     crossPlayerRef.disabled = false;
-    boardRef.querySelector(".dash").remove();
+    circlePlayerRef.style.pointerEvents = "auto";
+    crossPlayerRef.style.pointerEvents = "auto";
 }
 
 function updateBoard(event) {
