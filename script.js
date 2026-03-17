@@ -171,6 +171,6 @@ async function generateDash(a, c) {
     let xy2 = cells[c];
 
     boardRef.innerHTML += getTemplateDash(xy1, xy2, tableHeight, tableWidth);
-    await delay(5000); // wait for 500 milliseconds before proceeding
+    await delay(1000); // wait for 1000 milliseconds before proceeding
     boardRef.querySelector(".dash").remove();
 }
