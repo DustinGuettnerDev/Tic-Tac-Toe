@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(0, 0, 0, 0.734);
+    background-color: rgb(56, 56, 56);
     margin: 0;
 }
 
@@ -29,6 +29,16 @@ h1 {
     height: 100px;
     background-color: transparent;
     padding: 0;
+}
+
+.cell.enabled {
+    /* Apply pointer cursor only to enabled cells; use an "and" selector when classes have no space between them */
+    cursor: pointer;
+}
+
+.hover-enabled .cell:hover {
+    /* only apply hover effect when the board has the "hover-enabled" class */
+    background-color: rgb(117, 116, 116);
 }
 
 /*n begins with 0 and increases 1 till one child does not exist*/

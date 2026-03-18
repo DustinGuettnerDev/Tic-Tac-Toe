@@ -17,7 +17,7 @@ let winConditions = [
     [2, 4, 6], // Diagonal 2
 ];
 
-let cells = [
+let cellPositions = [
     //first row
     [50, 50],
     [150, 50],
@@ -47,9 +47,10 @@ function selectPlayer(event) {
     }
     currentPlayer = event.currentTarget.id; // event.currentTarget is the button that was clicked
     event.currentTarget.classList.add("selected"); // add the "selected" class to the clicked button
+    boardRef.classList.add("hover-enabled");
     for (let field of fields) {
         field.disabled = false;
-        field.style.cursor = "pointer";
+        field.classList.add("enabled");
     }
 }
 
@@ -108,7 +109,7 @@ function resetGame() {
     for (let field of fields) {
         field.innerHTML = "";
         field.disabled = true;
-        field.style.cursor = "default";
+        field.classList.remove("enabled");
     }
     board = Array(9).fill(null);
     circlePlayerRef.classList.remove("selected");
@@ -117,6 +118,7 @@ function resetGame() {
     crossPlayerRef.disabled = false;
     circlePlayerRef.style.pointerEvents = "auto";
     crossPlayerRef.style.pointerEvents = "auto";
+    boardRef.classList.remove("hover-enabled");
 }
 
 function updateBoard(event) {
@@ -170,8 +172,8 @@ async function generateDash(a, c) {
     const tableHeight = 300;
     const tableWidth = 300;
 
-    let xy1 = cells[a];
-    let xy2 = cells[c];
+    let xy1 = cellPositions[a];
+    let xy2 = cellPositions[c];
 
     boardRef.innerHTML += getTemplateDash(xy1, xy2, tableHeight, tableWidth);
     await delay(1000); // wait for 1000 milliseconds before proceeding
