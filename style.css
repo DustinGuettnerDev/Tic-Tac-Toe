@@ -24,7 +24,7 @@ h1 {
 }
 
 .cell {
-    border: 2px solid white;
+    border: 2px solid rgb(199, 197, 197);
     width: 100px;
     height: 100px;
     background-color: transparent;
